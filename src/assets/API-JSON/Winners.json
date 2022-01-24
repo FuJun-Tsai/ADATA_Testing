@@ -1,0 +1,177 @@
+{
+    "meta": {
+      "pagination": {
+        "total": 1797,
+        "pages": 90,
+        "page": 1,
+        "limit": 20,
+        "links": {
+          "previous": null,
+          "current": "https://gorest.co.in/public/v1/users?page=1",
+          "next": "https://gorest.co.in/public/v1/users?page=2"
+        }
+      }
+    },
+    "data": [
+      {
+        "id": 3665,
+        "name": "renu21@ce.com",
+        "email": "renu21@11ce.com",
+        "gender": "female",
+        "status": "active",
+        "prize": "Nintendo Switch Lite + XPG microSDXC UHS-I U3 Class 10-128GB"
+      },
+      {
+        "id": 3216,
+        "name": "Catarina Nina Moraes",
+        "email": "catarinaninamoraes829@autvale.com",
+        "gender": "female",
+        "status": "active",
+        "prize": "Nintendo Switch Lite + XPG microSDXC UHS-I U3 Class 10-128GB"
+      },
+      {
+        "id": 3217,
+        "name": "Catarina Nina Moraes",
+        "email": "catarinaninamoraes214@autvale.com",
+        "gender": "female",
+        "status": "active",
+        "prize": "Nintendo Switch Lite + XPG microSDXC UHS-I U3 Class 10-128GB"
+      },
+      {
+        "id": 2626,
+        "name": "tosto tos",
+        "email": "Toric2a186998896965@gmail.com",
+        "gender": "male",
+        "status": "inactive",
+        "prize":"D60G DRAM 3000 MHz 16G (8G*2)"
+      },
+      {
+        "id": 3668,
+        "name": "Hfaks",
+        "email": "afaks@cff14.lo.com",
+        "gender": "female",
+        "status": "active",
+        "prize":"D60G DRAM 3000 MHz 16G (8G*2)"
+      },
+      {
+        "id": 2618,
+        "name": "Wilbert",
+        "email": "LN+inventore@example.com",
+        "gender": "female",
+        "status": "active",
+        "prize":"D60G DRAM 3000 MHz 16G (8G*2)"
+      },
+      {
+        "id": 2935,
+        "name": "аrtem?:№;%:?",
+        "email": "Nemchenko84@gmail.com",
+        "gender": "male",
+        "status": "active",
+        "prize":"D60G DRAM 3000 MHz 16G (8G*2)"
+      },
+      {
+        "id": 2625,
+        "name": "Anjali",
+        "email": "Update@test.com",
+        "gender": "female",
+        "status": "inactive",
+        "prize":"D60G DRAM 3000 MHz 16G (8G*2)"
+      },
+      {
+        "id": 3670,
+        "name": "Hfaks",
+        "email": "afaks@cff15.lo.com",
+        "gender": "female",
+        "status": "active",
+        "prize":"D60G DRAM 3000 MHz 16G (8G*2)"
+      },
+      {
+        "id": 2938,
+        "name": "аrtem?:№;%:?",
+        "email": "Nemchenko9999@gmail.com",
+        "gender": "male",
+        "status": "active",
+        "prize":"D60G DRAM 3000 MHz 16G (8G*2)"
+      },
+      {
+        "id": 2406,
+        "name": "john@ce.com",
+        "email": "john@11ce.com",
+        "gender": "male",
+        "status": "active",
+        "prize":"D60G DRAM 3000 MHz 16G (8G*2)"
+      },
+      {
+        "id": 3360,
+        "name": "Mrs. Humberto Weissnat",
+        "email": "deangelo.lesch@gmail.com",
+        "gender": "female",
+        "status": "active",
+        "prize":"PRECOG Headset"
+      },
+      {
+        "id": 3379,
+        "name": "Oscar Rosenbaum",
+        "email": "eneida.kemmer@yahoo.com",
+        "gender": "female",
+        "status": "active",
+        "prize":"PRECOG Headset"
+      },
+      {
+        "id": 3392,
+        "name": "Andres Rodriguez",
+        "email": "testerarg@test.com",
+        "gender": "male",
+        "status": "active",
+        "prize":"PRECOG Headset"
+      },
+      {
+        "id": 2640,
+        "name": "Armand",
+        "email": "LN+qui@example.com",
+        "gender": "male",
+        "status": "inactive",
+        "prize":"PRECOG Headset"
+      },
+      {
+        "id": 2643,
+        "name": "Margarito Swaniawski",
+        "email": "corinne.harvey@hotmail.com",
+        "gender": "male",
+        "status": "active",
+        "prize":"PRECOG Headset"
+      },
+      {
+        "id": 3394,
+        "name": "yvrtd",
+        "email": "ugrkq@gmail.com",
+        "gender": "male",
+        "status": "active",
+        "prize":"PRECOG Headset"
+      },
+      {
+        "id": 3050,
+        "name": "Topical Pala",
+        "email": "topical_pala12@gmail.com",
+        "gender": "female",
+        "status": "active",
+        "prize":"PRECOG Headset"
+      },
+      {
+        "id": 2575,
+        "name": "UpdatedName1642685552476",
+        "email": "UpdatedEmail1642685552476@test.com",
+        "gender": "male",
+        "status": "inactive",
+        "prize":"PRECOG Headset"
+      },
+      {
+        "id": 3538,
+        "name": "Andres Rodriguez",
+        "email": "tefsaasdfg@test.com",
+        "gender": "male",
+        "status": "active",
+        "prize":"PRECOG Headset"
+      }
+    ]
+  }
