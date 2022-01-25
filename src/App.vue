@@ -40,8 +40,9 @@
     </div>
   </nav>
   <router-view :lang="lang"
-                @emit-reg="getMember"
-                @emit-ver="getVerify"/>
+               :islog="user.isLog"
+               @emit-reg="setMember"
+               @emit-ver="setVerify"/>
   <footer class="p-4">
     <p class="text-center m-0">Copyright © 2019 ADATA Technology Co., Ltd All rights reserved</p>
   </footer>
@@ -49,6 +50,7 @@
 
 <script>
 import { useI18n } from 'vue-i18n';
+import emitter from './plugins/mitt';
 
 export default {
   data() {
@@ -58,20 +60,39 @@ export default {
         name: '',
         email: '',
         password: '',
-        isReg: false,
+        isLog: false,
+        isVer: false,
         created: '',
         updated: '',
       },
     };
   },
+  provide() {
+    return {
+      emitter,
+    };
+  },
   methods: {
-    getMember(email, name, password, created) {
+    setMember(email, name, password, created) {
       this.user.email = email;
       this.user.name = name;
       this.user.password = password;
       this.user.created = created;
+      this.user.isLog = true;
+    },
+    setVerify() {
+      this.user.isVer = true;
     },
   },
+  created() {
+    emitter.on('emit-log', (data) => {
+      this.user.email = data.email;
+      this.user.password = data.password;
+      this.user.name = data.name;
+      this.user.isLog = true;
+    });
+  },
+  //
   setup() {
     const { locale } = useI18n();
     const handleChangeLanguage = (e) => {

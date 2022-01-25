@@ -19,7 +19,6 @@
       </div>
     </div>
   </section>
-  <h1>{{lang}}</h1>
   <section>
     <div class="container">
       <div class="row align-items-center">
@@ -38,11 +37,12 @@
   <section>
     <div class="container">
       <div class="row">
-        <div class="col-12 col-lg-7">
+        <div class="col-12 col-lg-7 m-auto">
           <img :src="require(`../assets/images/home/slider/win1_en.png`)" alt="">
         </div>
-        <div class="col-12 col-lg-5 d-flex justify-content-center align-items-center">
-          <Login/>
+        <div v-if="islog === false"
+             class="col-12 col-lg-5 d-flex justify-content-center align-items-center">
+          <Login :islog="islog"/>
         </div>
       </div>
     </div>
@@ -56,6 +56,7 @@ import Login from '../components/Login.vue';
 export default {
   props: {
     lang: String,
+    islog: Boolean,
   },
   components: {
     Login,
