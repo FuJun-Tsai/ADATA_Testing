@@ -22,6 +22,11 @@
           <li class="nav-item px-2">
             <router-link class="nav-link" to="/winners">Winners</router-link>
           </li>
+          <li class="nav-item px-2">
+            <p v-if="user.isLog === true"
+               @click="dataReset()"
+               class="nav-link mb-0 text-light cursor-point" >Log Out</p>
+          </li>
           <li class="nav-item px-2 dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown05"
                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -83,6 +88,15 @@ export default {
     setVerify() {
       this.user.isVer = true;
     },
+    dataReset() {
+      this.user.name = '';
+      this.user.email = '';
+      this.user.password = '';
+      this.user.isLog = false;
+      this.user.isVer = false;
+      this.user.created = '';
+      this.user.updated = '';
+    },
   },
   created() {
     emitter.on('emit-log', (data) => {
@@ -129,6 +143,10 @@ export default {
 
 .letter-space4{
   letter-spacing: 4px;
+}
+
+.cursor-point{
+  cursor: pointer;
 }
 
 #nav{
