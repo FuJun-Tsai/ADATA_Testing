@@ -1,41 +1,85 @@
 <template>
-  <div id="nav" class="mb-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-12 d-flex align-items-center">
-          <router-link class="me-auto" to="/home">
-            <img src="./assets/images/logo.png" alt="">
-          </router-link>
-          <router-link class="p-4" to="/news">News</router-link>
-          <router-link class="p-4" to="/prizes">Prizes</router-link>
-          <router-link class="p-4" to="/winners">Winners</router-link>
-          <!-- <button>Language</button> -->
-        </div>
+  <nav id="nav" class="navbar navbar-expand-lg navbar-dark position-fixed w-100 top-0 bg-gray"
+       aria-label="Fifth navbar example">
+    <div class="container-fluid">
+      <router-link class="navbar-brand" to="/home">
+        <img class="logo" src="./assets/images/logo.png" alt="">
+      </router-link>
+      <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse" data-bs-target="#navbarsExample05"
+              aria-controls="navbarsExample05" aria-expanded="false"
+              aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarsExample05">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item px-2">
+            <router-link class="nav-link" to="/news">News</router-link>
+          </li>
+          <li class="nav-item px-2">
+            <router-link class="nav-link" to="/prizes">Prizes</router-link>
+          </li>
+          <li class="nav-item px-2">
+            <router-link class="nav-link" to="/winners">Winners</router-link>
+          </li>
+          <li class="nav-item px-2 dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown05"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Language
+            </a>
+            <select class="dropdown-menu" aria-labelledby="dropdown05"
+                    v-model="lang" @change="handleChangeLanguage">
+              <option class="w-100" value="en">English</option>
+              <option class="w-100" value="tw">中文</option>
+              <option class="w-100" value="de">德語</option>
+              <option class="w-100" value="jp">日文</option>
+            </select>
+          </li>
+        </ul>
       </div>
     </div>
-  </div>
-  <router-view/>
+  </nav>
+  <router-view :lang="lang"
+                @emit-reg="getMember"
+                @emit-ver="getVerify"/>
   <footer class="p-4">
     <p class="text-center m-0">Copyright © 2019 ADATA Technology Co., Ltd All rights reserved</p>
   </footer>
 </template>
 
 <script>
+import { useI18n } from 'vue-i18n';
+
 export default {
   data() {
     return {
-      Language: [],
+      lang: 'jp',
+      user: {
+        name: '',
+        email: '',
+        password: '',
+        isReg: false,
+        created: '',
+        updated: '',
+      },
     };
   },
   methods: {
-    getInfo() {
-      this.axios.get('./assets/lang/tw.php').then((res) => {
-        console.log(res);
-      });
+    getMember(email, name, password, created) {
+      this.user.email = email;
+      this.user.name = name;
+      this.user.password = password;
+      this.user.created = created;
     },
   },
-  created() {
-    // this.getInfo();
+  setup() {
+    const { locale } = useI18n();
+    const handleChangeLanguage = (e) => {
+      locale.value = e.target.value;
+    };
+    return {
+      handleChangeLanguage,
+    };
   },
 };
 </script>
@@ -46,15 +90,41 @@ export default {
   box-sizing: border-box;
 }
 
+:root{
+  --bs-dark-rgb: 0, 0, 0;
+}
+
+.bg-gray{
+  background: #b9b9b977;
+}
+
+.letter-space1{
+  letter-spacing: 1px;
+}
+
+.letter-space2{
+  letter-spacing: 2px;
+}
+
+.letter-space4{
+  letter-spacing: 4px;
+}
+
 #nav{
-  background: #80808077;
+  .logo{
+    max-width: 160px;
+  }
   a{
     color: #fff;
     text-decoration: none;
   }
+  .dropdown-item{
+    color: #333;
+  }
 }
 
 body{
+  padding-top: 100px;
   background: url('./assets/images/bg_all.jpg');
   background-size: cover;
 }
@@ -67,4 +137,5 @@ footer{
 img{
   width: 100%;
 }
+
 </style>

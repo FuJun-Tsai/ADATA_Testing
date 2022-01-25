@@ -6,10 +6,12 @@
           <div class="container">
             <div class="row">
               <div class="col-10 m-auto">
-                <img class="w-100" src="@/assets/images/home/slider/index_title_tw.png" alt="">
+                <img class="w-100"
+                     :src="require(`../assets/images/home/slider/index_title_${lang}.png`)" alt="">
               </div>
               <div class="col-12">
-                <img class="w-100" src="@/assets/images/home/slider/index_kv_tw.png" alt="">
+                <img class="w-100"
+                     :src="require(`../assets/images/home/slider/index_kv_${lang}.png`)" alt="">
               </div>
             </div>
           </div>
@@ -17,17 +19,18 @@
       </div>
     </div>
   </section>
+  <h1>{{lang}}</h1>
   <section>
     <div class="container">
       <div class="row align-items-center">
         <div class="col-12 col-md-4">
-          <img src="../assets/images/home/slider/win1_step1_tw.png" alt="">
+          <img :src="require(`../assets/images/home/slider/win1_step1_${lang}.png`)" alt="">
         </div>
         <div class="col-12 col-md-4">
-          <img src="../assets/images/home/slider/win1_step2_tw.png" alt="">
+          <img :src="require(`../assets/images/home/slider/win1_step2_${lang}.png`)" alt="">
         </div>
         <div class="col-12 col-md-4">
-          <img src="../assets/images/home/slider/win1_step3_tw.png" alt="">
+          <img :src="require(`../assets/images/home/slider/win1_step3_${lang}.png`)" alt="">
         </div>
       </div>
     </div>
@@ -36,7 +39,7 @@
     <div class="container">
       <div class="row">
         <div class="col-12 col-lg-7">
-          <img src="../assets/images/home/slider/win1_en.png" alt="">
+          <img :src="require(`../assets/images/home/slider/win1_en.png`)" alt="">
         </div>
         <div class="col-12 col-lg-5 d-flex justify-content-center align-items-center">
           <Login/>
@@ -51,8 +54,15 @@
 import Login from '../components/Login.vue';
 
 export default {
+  props: {
+    lang: String,
+  },
   components: {
     Login,
+  },
+  data() {
+    return {
+    };
   },
 };
 </script>

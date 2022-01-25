@@ -3,8 +3,8 @@ import Home from '../views/Home.vue';
 import News from '../views/News.vue';
 import Prize from '../views/Prize.vue';
 import Winner from '../views/Winner.vue';
+import Register from '../views/Register.vue';
 
-// const lang = ['tw', 'jp', 'en', 'de'];
 const routes = [
   {
     path: '/home',
@@ -13,6 +13,7 @@ const routes = [
     meta: {
       title: 'ADATA VIP PARTY 網路活動_威剛科技',
       keyWords: 'ADATA, Member VIP Party, Parrot Bebop Drone, 1TB HDD, iPhone OTG, Android 32GB OTG, 網路活動',
+      description: 'ADATA VIP Party, 僅限威剛會員, 只要更新您的會員資料就有機會贏得超酷的禮物喔!',
     },
   },
   {
@@ -30,20 +31,16 @@ const routes = [
     name: 'Winner',
     component: Winner,
   },
+  {
+    path: '/register',
+    name: 'Register',
+    component: Register,
+  },
 ];
-
-// console.log(navigator.language);
-// console.log(lang);
-
-// fetch('../assets/lang/tw.php').then((res) => {
-//   console.log(res);
-//   return res;
-// }).then((res) => {
-//   console.log(res.json());
-// });
 
 const router = createRouter({
   history: createWebHashHistory(),
+  linkActiveClass: 'active',
   routes,
 });
 
