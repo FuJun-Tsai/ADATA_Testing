@@ -4,6 +4,7 @@ import News from '../views/News.vue';
 import Prize from '../views/Prize.vue';
 import Winner from '../views/Winner.vue';
 import Register from '../views/Register.vue';
+import Member from '../views/Member.vue';
 
 const routes = [
   {
@@ -35,6 +36,11 @@ const routes = [
     path: '/register',
     name: 'Register',
     component: Register,
+  },
+  {
+    path: '/member',
+    name: 'Member',
+    component: Member,
   },
 ];
 

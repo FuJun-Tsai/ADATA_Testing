@@ -40,9 +40,9 @@
         <div class="col-12 col-lg-7 m-auto">
           <img :src="require(`../assets/images/home/slider/win1_en.png`)" alt="">
         </div>
-        <div v-if="islog === false"
+        <div v-if="isRegister===false"
              class="col-12 col-lg-5 d-flex justify-content-center align-items-center">
-          <Login :islog="islog"/>
+          <Login :isRegister="isRegister"/>
         </div>
       </div>
     </div>
@@ -56,7 +56,7 @@ import Login from '../components/Login.vue';
 export default {
   props: {
     lang: String,
-    islog: Boolean,
+    isRegister: Boolean,
   },
   components: {
     Login,

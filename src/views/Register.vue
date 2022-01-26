@@ -19,16 +19,13 @@
                     <div class="d-flex m-auto justify-content-around">
                         <button class="btn bg-danger text-white"
                                 @click="this.$router.go(-1)">回上一頁</button>
-                        <button v-if="isLog === false"
+                        <button v-if="isRegister === false"
                                 class="btn bg-primary text-white" @click="formSubmit">送出</button>
-                        <button v-if="isLog === true"
-                                class="btn bg-primary text-white" @click="OTP">重新驗證</button>
                     </div>
                 </section>
             </div>
         </div>
     </div>
-    <p class="text-white">OTPcode:{{OTPcode}}</p>
     <div v-if="lightbox === true"
          @click="lightbox = false"
          class="gray-back position-fixed top-0 start-0">
@@ -60,7 +57,7 @@ export default {
       lightbox: false,
       OTPlink: '',
       OTPcode: '',
-      isLog: false,
+      isRegister: false,
     };
   },
   methods: {
@@ -80,8 +77,7 @@ export default {
     },
     registed() {
       const created = new Date().getTime();
-      this.$emit('emit-reg', this.email, this.name, this.password, created);
-      this.isLog = true;
+      this.$emit('emit-reg', this.email, this.name, this.password, created, this.OTPcode);
       this.OTP();
     },
     verify() {

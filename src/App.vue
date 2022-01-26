@@ -23,7 +23,7 @@
             <router-link class="nav-link" to="/winners">Winners</router-link>
           </li>
           <li class="nav-item px-2">
-            <p v-if="user.isLog === true"
+            <p v-if="user.isRegister === true"
                @click="dataReset()"
                class="nav-link mb-0 text-light cursor-point" >Log Out</p>
           </li>
@@ -44,10 +44,13 @@
       </div>
     </div>
   </nav>
-  <router-view :lang="lang"
-               :islog="user.isLog"
-               @emit-reg="setMember"
-               @emit-ver="setVerify"/>
+  <section>
+    <router-view :member="user"
+                 :lang="lang"
+                 :isRegister="user.isRegister"
+                 @emit-reg="setMember"
+                 @emit-ver="setVerify"/>
+  </section>
   <footer class="p-4">
     <p class="text-center m-0">Copyright © 2019 ADATA Technology Co., Ltd All rights reserved</p>
   </footer>
@@ -60,15 +63,17 @@ import emitter from './plugins/mitt';
 export default {
   data() {
     return {
-      lang: 'jp',
+      lang: localStorage.getItem('lang') || 'tw',
       user: {
         name: '',
         email: '',
         password: '',
-        isLog: false,
-        isVer: false,
+        isRegister: false,
         created: '',
         updated: '',
+        OTP: '',
+      },
+      cart: {
       },
     };
   },
@@ -83,17 +88,16 @@ export default {
       this.user.name = name;
       this.user.password = password;
       this.user.created = created;
-      this.user.isLog = true;
+      this.user.isRegister = true;
     },
     setVerify() {
-      this.user.isVer = true;
+      this.user.isRegister = true;
     },
     dataReset() {
       this.user.name = '';
       this.user.email = '';
       this.user.password = '';
-      this.user.isLog = false;
-      this.user.isVer = false;
+      this.user.isRegister = false;
       this.user.created = '';
       this.user.updated = '';
     },
@@ -103,7 +107,7 @@ export default {
       this.user.email = data.email;
       this.user.password = data.password;
       this.user.name = data.name;
-      this.user.isLog = true;
+      this.user.isRegister = true;
     });
   },
   //
@@ -111,6 +115,7 @@ export default {
     const { locale } = useI18n();
     const handleChangeLanguage = (e) => {
       locale.value = e.target.value;
+      localStorage.setItem('lang', e.target.value);
     };
     return {
       handleChangeLanguage,
