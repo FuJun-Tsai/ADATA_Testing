@@ -1,10 +1,16 @@
 <template>
-  <div class="position-fixed bg-light lightbox top-50 start-50 translate-middle rounded">
+  <div class="position-fixed top-50 start-50 translate-middle rounded">
+    <div>
+      <p>{{msg}}</p>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
+  props: {
+    mse: String,
+  },
 };
 </script>
 

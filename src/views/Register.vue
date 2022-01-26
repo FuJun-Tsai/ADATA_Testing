@@ -77,7 +77,7 @@ export default {
     },
     registed() {
       const created = new Date().getTime();
-      this.$emit('emit-reg', this.email, this.name, this.password, created, this.OTPcode);
+      this.$emit('emit-reg', this.email, this.name, this.password, created, this.OTPcode, members.length + 1);
       this.OTP();
     },
     verify() {

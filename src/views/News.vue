@@ -4,24 +4,23 @@
       <div class="col-12 mb-4">
         <!-- {{data}} -->
         <label class="col-6 col-md-3" :for="tag" v-for="tag in tags" :key="tag">
-          <input v-model="nowtag" :id="tag" name="nowtag" :value="tag" type="radio">
+          <input v-model="nowtag" :id="tag" name="tags" :value="tag" type="radio">
           {{tag}}
         </label>
       </div>
-      <div class="col-12 mb-5" v-for="(item, key) in showData" :key="item">
+      <div class="col-12 mb-5" v-for="(item, key) in data" :key="item"
+           v-show=" nowtag ? nowtag === key : true">
         <h2 class="border-start ps-2 border-5 border-light mb-4">
           {{key}}
         </h2>
         <div class="row">
-          <div v-for="(report, index) in item"
-               :key="report"
-               class="col-6 col-md-4 mb-5 h-100 report px-5"
+          <div v-for="(report) in item" :key="report"
+               class="col-6 col-lg-4 mb-5 h-100 report px-3"
                :class="key">
             <img :src="report.image_url===null?require(`../assets/images/replace/${key}.jpg`)
                  :report.image_url"
-                 @error="imgBackup(key, index)"
+                 class="m-0"
                  alt="A picture">
-            {{ report.image_url === null}}
             <h3>
               {{report.title}}
             </h3>
@@ -34,8 +33,6 @@
         </div>
       </div>
     </div>
-    <p class="text-white">
-    </p>
   </div>
 </template>
 
@@ -62,11 +59,6 @@ export default {
     // },
   },
   computed: {
-    showData() {
-      // if (this.nowtag.length === 0) {
-      return this.data;
-      // }
-    },
   },
   created() {
     this.getData();

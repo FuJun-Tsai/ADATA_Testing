@@ -46,10 +46,13 @@
   </nav>
   <section>
     <router-view :member="user"
+                 :cart="cart"
                  :lang="lang"
                  :isRegister="user.isRegister"
                  @emit-reg="setMember"
-                 @emit-ver="setVerify"/>
+                 @emit-ver="setVerify"
+                 @emit-cart="setCart"
+                 @emit-updateMember="updateMember"/>
   </section>
   <footer class="p-4">
     <p class="text-center m-0">Copyright © 2019 ADATA Technology Co., Ltd All rights reserved</p>
@@ -65,6 +68,7 @@ export default {
     return {
       lang: localStorage.getItem('lang') || 'tw',
       user: {
+        rowidt: '',
         name: '',
         email: '',
         password: '',
@@ -83,12 +87,12 @@ export default {
     };
   },
   methods: {
-    setMember(email, name, password, created) {
+    setMember(email, name, password, created, rowidt) {
       this.user.email = email;
       this.user.name = name;
       this.user.password = password;
       this.user.created = created;
-      this.user.isRegister = true;
+      this.user.rowidt = rowidt;
     },
     setVerify() {
       this.user.isRegister = true;
@@ -100,6 +104,12 @@ export default {
       this.user.isRegister = false;
       this.user.created = '';
       this.user.updated = '';
+    },
+    setCart() {
+    },
+    updateMember(target, value, updateTime) {
+      this.user.updated = updateTime;
+      this.user[target] = value;
     },
   },
   created() {
