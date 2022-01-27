@@ -1,6 +1,5 @@
 <?php
 /* tw */
-echo{
 $l_title = 'ADATA VIP PARTY 網路活動_威剛科技';
 $l_keyword = 'ADATA, Member VIP Party, Parrot Bebop Drone, 1TB HDD, iPhone OTG, Android 32GB OTG, 網路活動';
 $l_description = 'ADATA VIP Party, 僅限威剛會員, 只要更新您的會員資料就有機會贏得超酷的禮物喔!';
@@ -78,5 +77,4 @@ $l_winners_content_1 = '獎項資訊';
 $l_winners_content_2 = '國家 ';
 $l_winners_content_3 = '更新會員資料即可贏得大獎';
 $l_winners_content_4 = '感謝您參與威剛VIP Party活動,本活動已結束! 得獎公告將於2016/11/8於本活動網站公告。 敬請期待!';
-}
 ?>

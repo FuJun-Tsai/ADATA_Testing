@@ -1,17 +1,14 @@
 import { createI18n } from 'vue-i18n';
-import tw from '../lang/tw.php';
-import en from '../lang/en.php';
-import jp from '../lang/jp.php';
-import de from '../lang/de.php';
+import tw from '../lang/tw.json';
+import en from '../lang/en.json';
 
 const i18n = createI18n({
-  locale: 'tw',
+  locale: localStorage.getItem('lang  '),
   fallbackLocale: 'tw',
   messages: {
     en,
     tw,
-    jp,
-    de,
   },
 });
+
 export default i18n;

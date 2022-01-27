@@ -41,9 +41,18 @@ const routes = [
     path: '/member',
     name: 'Member',
     component: Member,
+    children: [
+      {
+        path: 'info',
+        component: () => import('../views/Member_info.vue'),
+      },
+      {
+        path: 'prize',
+        component: () => import('../views/Member_prize.vue'),
+      },
+    ],
   },
 ];
-
 const router = createRouter({
   history: createWebHashHistory(),
   linkActiveClass: 'active',

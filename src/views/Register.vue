@@ -2,19 +2,34 @@
     <div class="container">
         <div class="row">
             <div class="form mx-auto mb-3 py-5">
-                <section class="text-white text-center">
+                <section class="text-white text-center vh70">
                     <h2 class="mb-4 letter-space4">會員註冊</h2>
                     <label class="w-100 mb-4 letter-space4" for="email">
-                        信箱：
-                        <input v-model="email" id="email" type="text">
+                      <p class="mb-0">
+                        {{$t('l_ss_proreg_login_input_id')}}
+                      </p>
+                      <input v-model="email" id="email" type="text"
+                             placeholder="required field">
                     </label>
                     <label class="w-100 mb-4 letter-space4" for="name">
-                        名稱：
-                        <input v-model="name" id="name" type="text">
+                      <p class="mb-0">
+                        {{$t('user_name')}}
+                      </p>
+                      <input v-model="name" id="name" type="text"
+                             placeholder="required field">
                     </label>
                     <label class="w-100 mb-4 letter-space4" for="password">
-                        密碼：
-                        <input v-model="password" id="password" type="password">
+                      <p class="mb-0">
+                        {{$t('l_ss_proreg_login_input_pwd')}}
+                      </p>
+                      <input v-model="password" id="password" type="password"
+                             placeholder="required field">
+                    </label>
+                    <label class="w-100 mb-4 letter-space4" for="address">
+                      <p class="mb-0">
+                        {{$t('Address')}}
+                      </p>
+                      <input class="w-100" v-model="address" id="address" type="text">
                     </label>
                     <div class="d-flex m-auto justify-content-around">
                         <button class="btn bg-danger text-white"
@@ -26,35 +41,37 @@
             </div>
         </div>
     </div>
-    <div v-if="lightbox === true"
-         @click="lightbox = false"
-         class="gray-back position-fixed top-0 start-0">
+    <div v-if="OTPlightbox === true"
+         @click="OTPlightbox = false"
+         class="OTPlight-back position-fixed top-0 start-0">
       <div class="bg-light lightbox position-absolute top-50 start-50 translate-middle
                   d-flex flex-column justify-content-around align-items-center rounded">
         <img class="close position-absolute top-0 end-0" alt=""
              src="../assets/images/lightbox/close.png"
-             @click="lightbox = false">
+             @click="OTPlightbox = false">
         <h2 class="text-center">{{OTPcode !== '' ? '請在 30 秒內完成驗證' : '驗證碼失效，請重新驗證'}}</h2>
         <button class="btn rounded bg-primary text-white"
                 @click="verify()">{{OTPcode !== '' ? '驗證' : '重新驗證'}}</button>
       </div>
     </div>
+    <lightbox ref="lightbox"></lightbox>
 </template>
 
 <script>
 import members from '../assets/API-JSON/Member.json';
-// import lightbox from '../components/Lightbox.vue';
+import lightbox from '../components/Lightbox.vue';
 
 export default {
-  // components: {
-  //   lightbox,
-  // },
+  components: {
+    lightbox,
+  },
   data() {
     return {
       email: '',
       name: '',
       password: '',
-      lightbox: false,
+      OTPlightbox: false,
+      address: '',
       OTPlink: '',
       OTPcode: '',
       isRegister: false,
@@ -64,11 +81,11 @@ export default {
     formSubmit() {
       for (let i = 0; i < members.length; i += 1) {
         if (this.email === '' || this.name === '' || this.password === '') {
-          alert('資料請填完整');
+          this.$refs.lightbox.open('註冊錯誤', '資料填寫務必完整');
           return;
         }
         if (this.email === members[i].email) {
-          alert('此帳號已被註冊');
+          this.$refs.lightbox.open('註冊錯誤', '此帳號已被註冊');
           return;
         }
       }
@@ -88,7 +105,7 @@ export default {
       }
     },
     OTP() {
-      this.lightbox = true;
+      this.OTPlightbox = true;
       if (this.OTPcode !== '') {
         this.OTPcode = '';
       }
@@ -103,30 +120,20 @@ export default {
       OTPlive();
     },
   },
-  created() {
-  },
 };
 
 </script>
 
 <style lang="scss">
     .form{
-        max-width: 300px;
+        max-width: 400px;
     }
     .btn{
         min-width: 120px;
     }
-    .lightbox{
-      width: 300px;
-      height: 300px;
-    }
-    .gray-back{
+    .OTPlight-back{
       background: #80808077;
       height: 100vh;
       width: 100%;
-    }
-    .close{
-      width: 40px;
-      transform: translate(-6px,6px);
     }
 </style>

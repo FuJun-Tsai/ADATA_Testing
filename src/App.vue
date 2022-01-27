@@ -1,6 +1,7 @@
 <template>
   <nav id="nav" class="navbar navbar-expand-lg navbar-dark position-fixed w-100 top-0 bg-gray"
        aria-label="Fifth navbar example">
+    <div class="nav-design"></div>
     <div class="container-fluid">
       <router-link class="navbar-brand" to="/home">
         <img class="logo" src="./assets/images/logo.png" alt="">
@@ -22,10 +23,19 @@
           <li class="nav-item px-2">
             <router-link class="nav-link" to="/winners">Winners</router-link>
           </li>
+          <li class="nav-item px-2" v-if="user.isRegister === true">
+            <router-link class="nav-link" to="/member">Member</router-link>
+          </li>
+          <li class="nav-item px-2" v-if="user.isRegister === false">
+            <router-link class="nav-link" to="/home">Sign In</router-link>
+          </li>
+          <li class="nav-item px-2" v-if="user.isRegister === false">
+            <router-link class="nav-link" to="/register">Sign Up</router-link>
+          </li>
           <li class="nav-item px-2">
             <p v-if="user.isRegister === true"
                @click="dataReset()"
-               class="nav-link mb-0 text-light cursor-point" >Log Out</p>
+               class="nav-link mb-0 text-light cursor-point" >Sign Out</p>
           </li>
           <li class="nav-item px-2 dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown05"
@@ -55,12 +65,16 @@
                  @emit-updateMember="updateMember"/>
   </section>
   <footer class="p-4">
-    <p class="text-center m-0">Copyright © 2019 ADATA Technology Co., Ltd All rights reserved</p>
+    <p class="text-center m-0">{{$t('l_footer_content_1')}}</p>
+    <p class="text-center">
+      <small class="text-center m-0">{{$t('l_header_content')}}</small>
+    </p>
   </footer>
 </template>
 
 <script>
 import { useI18n } from 'vue-i18n';
+// import initFacebook from './plugins/facebook';
 import emitter from './plugins/mitt';
 
 export default {
@@ -72,13 +86,20 @@ export default {
         name: '',
         email: '',
         password: '',
+        address: '',
         isRegister: false,
         created: '',
         updated: '',
         OTP: '',
       },
-      cart: {
-      },
+      cart: [
+        {
+          name: 'Catarina Nina Moraes',
+          id: '5000',
+          prize: 'Nitendo Switch Lite + XPG microSDXC',
+          address: '桃園市桃園區成功路三段15號10樓',
+        },
+      ],
     };
   },
   provide() {
@@ -87,6 +108,9 @@ export default {
     };
   },
   methods: {
+    test() {
+      console.log(this.$router);
+    },
     setMember(email, name, password, created, rowidt) {
       this.user.email = email;
       this.user.name = name;
@@ -105,7 +129,15 @@ export default {
       this.user.created = '';
       this.user.updated = '';
     },
-    setCart() {
+    setCart(prize, address) {
+      const xxx = {
+        id: 8888,
+        name: this.user.name,
+        email: this.user.email,
+        prize,
+        address,
+      };
+      this.cart.push(xxx);
     },
     updateMember(target, value, updateTime) {
       this.user.updated = updateTime;
@@ -122,6 +154,7 @@ export default {
   },
   //
   setup() {
+    // initFacebook();
     const { locale } = useI18n();
     const handleChangeLanguage = (e) => {
       locale.value = e.target.value;
@@ -164,7 +197,20 @@ export default {
   cursor: pointer;
 }
 
+.vh70{
+  min-height: 70vh;
+}
+
 #nav{
+  position: relative;
+  z-index: 1;
+  .nav-design{
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(4px) brightness(0.5);
+  }
   .logo{
     max-width: 160px;
   }

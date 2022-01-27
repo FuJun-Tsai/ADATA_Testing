@@ -2,7 +2,6 @@
   <div class="container">
     <div class="row  text-white">
       <div class="col-12 mb-4">
-        <!-- {{data}} -->
         <label class="col-6 col-md-3" :for="tag" v-for="tag in tags" :key="tag">
           <input v-model="nowtag" :id="tag" name="tags" :value="tag" type="radio">
           {{tag}}
@@ -15,20 +14,25 @@
         </h2>
         <div class="row">
           <div v-for="(report) in item" :key="report"
-               class="col-6 col-lg-4 mb-5 h-100 report px-3"
+               class="col-12 col-lg-4 mb-5 h-100 report px-3"
                :class="key">
-            <img :src="report.image_url===null?require(`../assets/images/replace/${key}.jpg`)
-                 :report.image_url"
-                 class="m-0"
-                 alt="A picture">
-            <h3>
-              {{report.title}}
-            </h3>
-            <hr>
-            <p class="text-end">{{report.pubDate}}</p>
-            <a :href="report.link">
-              <button class="rounded d-block m-auto">link</button>
-            </a>
+            <div class="card bg-dark p-2 border-secondary">
+              <img :src="report.image_url===null?require(`../assets/images/replace/${key}.jpg`)
+                  :report.image_url"
+                  class="m-0"
+                  alt="A picture">
+              <h3>
+                {{report.title}}
+              </h3>
+              <hr>
+              <p class="text-end">{{report.pubDate}}</p>
+              <p class="mb-0 text-center">
+                <a :href="report.link" >
+                  <button class="rounded m-auto btn
+                          bg-secondary text-white link">link</button>
+                </a>
+              </p>
+            </div>
           </div>
         </div>
       </div>

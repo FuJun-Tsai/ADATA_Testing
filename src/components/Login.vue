@@ -11,14 +11,16 @@
                    type="password" placeholder="Password"
                    v-model="password">
         </label>
-        <input type="button" class="mb-3 w-100 rounded p-3 bg-secondary text-white" value="Login"
-               @click="formSubmit()">
+        <button type="button" class="mb-3 w-100 rounded p-3 bg-secondary text-white"
+                @click="formSubmit()">
+                {{$t('l_ss_proreg_login_submit2')}}
+        </button>
       </form>
       <button class="mb-3 w-100 rounded p-2 text-white bg-primary">Facebook</button>
       <button class="mb-3 w-100 rounded p-2 text-white bg-danger">Google</button>
       <p>
         <router-link to="/register" class="text-white mb-3">
-          Create a new account
+          {{$t('l_ss_proreg_login_submit1')}}
         </router-link>
       </p>
     </div>
@@ -36,6 +38,7 @@ export default {
     return {
       email: '',
       password: '',
+      clientId: '*****',
     };
   },
   methods: {

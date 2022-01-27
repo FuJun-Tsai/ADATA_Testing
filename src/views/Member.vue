@@ -1,41 +1,72 @@
 <template>
-  <div class="container">
+  <div class="container pt-5 vh70">
     <div class="row text-white">
-        <div class="col-12">
-            <h2 class="text-center mb-3">會員專區</h2>
-        </div>
-        <div class="col-md-5 mx-auto text-center">
-          <div class="mb-3">
-              <p class="mb-0" >
-                信箱：{{member.email}}
-              </p>
-              <button @click="openLightbox('email', '信箱')">更改信箱</button>
+      <div class="col-12">
+        <h2 class="text-center mb-5">會員專區</h2>
+      </div>
+      <div class="col-12">
+        <div class="row">
+          <div class="col-lg-2 col-sm-3 col-12">
+            <button class="mb-2 w-100" v-for="tag in tags" :key="tag" :value="tag"
+                    @click="title = tag">{{tag}}
+            </button>
           </div>
-          <div class="mb-3">
-              <p class="mb-0" >
-                名稱：{{member.name}}
-              </p>
-              <button @click="openLightbox('name', '名稱')">更改名稱</button>
+          <div class="col-lg-10 col-sm-9 col-12 mx-auto">
+            <div class="row">
+              <div class="col-12">
+                <h3 class="text-center mb-3">{{title}}</h3>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 mx-auto text-center" v-if="title === '會員資訊'">
+                <div class="mb-3">
+                  <p class="mb-1" >
+                    {{member.name}} 您好！
+                  </p>
+                </div>
+                <div class="mb-3">
+                  <p class="mb-1" >
+                    信箱：{{member.email}}
+                  </p>
+                  <button class="text-white bg-primary"
+                          @click="openLightbox('email', '信箱')">更改信箱</button>
+                </div>
+                <div class="mb-3">
+                  <p class="mb-1" >
+                    地址：{{member.address}}
+                  </p>
+                  <button class="text-white bg-primary"
+                          @click="openLightbox('address', '地址')">更改地址</button>
+                </div>
+                <div class="mb-3">
+                  <button class="text-white bg-primary"
+                          @click="openLightbox('password', '密碼')">更改密碼</button>
+                </div>
+              </div>
+              <div class="col-12"  v-if="title === '兌換紀錄'">
+                <div class="row d-flex justify-content-center" v-for="item in reward" :key="item">
+                  <div class="col-3 col-md-2 mb-3 text-center">{{item.id}}</div>
+                  <div class="col-9 col-md-6 mb-3">{{item.prize}}</div>
+                  <hr>
+                </div>
+                <div class="row d-flex justify-content-center" v-for="item in cart" :key="item">
+                  <div class="col-3 col-md-2 mb-3 text-center">{{item.id}}</div>
+                  <div class="col-9 col-md-6 mb-3">{{item.prize}}</div>
+                  <hr>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="mb-3">
-              <button @click="openLightbox('password', '密碼')">更改密碼</button>
-          </div>
         </div>
-        <div class="col-12">
-            <h2 class="text-center mb-3">獎品兌換</h2>
-        </div>
-        <div class="row" v-for="item in reward" :key="item">
-          <div class="col-2 mb-3">{{item.id}}</div>
-          <div class="col-8 mb-3">{{item.prize}}</div>
-        </div>
+      </div>
     </div>
     <div v-if="lightbox === true"
-         class="gray-back position-fixed top-0 start-0">
+        class="gray-back position-fixed top-0 start-0">
       <div class="bg-light lightbox position-absolute top-50 start-50 translate-middle
-                  d-flex flex-column justify-content-around align-items-center rounded">
+                d-flex flex-column justify-content-around align-items-center rounded">
         <img class="close position-absolute top-0 end-0" alt=""
              src="../assets/images/lightbox/close.png"
-             @click="lightbox = false, value = ''">
+             @click="lightbox=false">
         <h2 class="text-center">請輸入新的{{word}}</h2>
         <input type="text" v-model="value" name="" id="">
         <button class="btn rounded bg-primary text-white"
@@ -51,13 +82,16 @@ import Winner from '../assets/API-JSON/Winners.json';
 export default {
   props: {
     member: Object,
+    cart: Object,
   },
   data() {
     return {
       lightbox: false,
-      word: '',
+      title: '會員資訊',
+      tags: ['會員資訊', '兌換紀錄'],
       target: '',
       value: '',
+      word: '',
     };
   },
   methods: {
@@ -75,7 +109,10 @@ export default {
   },
   computed: {
     reward() {
-      return Winner.data.filter((item) => item.email === this.member.email);
+      return Winner.data.filter((item) => item.name === this.member.name);
+    },
+    here() {
+      return this.cart;
     },
   },
   created() {
@@ -84,17 +121,5 @@ export default {
 </script>
 
 <style lang="scss">
-.lightbox{
-  width: 300px;
-  height: 300px;
-}
-.gray-back{
-  background: #80808077;
-  height: 100vh;
-  width: 100%;
-}
-.close{
-  width: 40px;
-  transform: translate(-6px,6px);
-}
+
 </style>
