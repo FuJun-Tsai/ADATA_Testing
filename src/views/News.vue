@@ -14,16 +14,18 @@
         </h2>
         <div class="row">
           <div v-for="(report) in item" :key="report"
-               class="col-12 col-lg-4 mb-5 h-100 report px-3"
+               class="col-12 col-md-6 col-lg-4 mb-5 h-100 report px-3"
                :class="key">
             <div class="card bg-dark p-2 border-secondary">
               <img :src="report.image_url===null?require(`../assets/images/replace/${key}.jpg`)
                   :report.image_url"
-                  class="m-0"
+                  class="mb-2"
                   alt="A picture">
-              <h3>
-                {{report.title}}
-              </h3>
+              <div class="info">
+                <h3>
+                  {{report.title}}
+                </h3>
+              </div>
               <hr>
               <p class="text-end">{{report.pubDate}}</p>
               <p class="mb-0 text-center">
@@ -81,5 +83,12 @@ export default {
   .report img{
     height: 30vmin;
     object-fit: cover;
+  }
+  .info{
+    height: 100px;
+    overflow: auto;
+  }
+  .tags{
+    z-index: 1;
   }
 </style>

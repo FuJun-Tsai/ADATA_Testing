@@ -6,21 +6,21 @@
                     <h2 class="mb-4 letter-space4">會員註冊</h2>
                     <label class="w-100 mb-4 letter-space4" for="email">
                       <p class="mb-0">
-                        {{$t('l_ss_proreg_login_input_id')}}
+                        {{$t('l_ss_proreg_login_input_id')}}*
                       </p>
                       <input v-model="email" id="email" type="text"
                              placeholder="required field">
                     </label>
                     <label class="w-100 mb-4 letter-space4" for="name">
                       <p class="mb-0">
-                        {{$t('user_name')}}
+                        {{$t('user_name')}}*
                       </p>
                       <input v-model="name" id="name" type="text"
                              placeholder="required field">
                     </label>
                     <label class="w-100 mb-4 letter-space4" for="password">
                       <p class="mb-0">
-                        {{$t('l_ss_proreg_login_input_pwd')}}
+                        {{$t('l_ss_proreg_login_input_pwd')}}*
                       </p>
                       <input v-model="password" id="password" type="password"
                              placeholder="required field">
@@ -44,12 +44,12 @@
     <div v-if="OTPlightbox === true"
          @click="OTPlightbox = false"
          class="OTPlight-back position-fixed top-0 start-0">
-      <div class="bg-light lightbox position-absolute top-50 start-50 translate-middle
+      <div class="bg-light OTPlightbox position-absolute top-50 start-50 translate-middle
                   d-flex flex-column justify-content-around align-items-center rounded">
         <img class="close position-absolute top-0 end-0" alt=""
              src="../assets/images/lightbox/close.png"
              @click="OTPlightbox = false">
-        <h2 class="text-center">{{OTPcode !== '' ? '請在 30 秒內完成驗證' : '驗證碼失效，請重新驗證'}}</h2>
+        <h2 class="text-center">{{OTPcode !== '' ? '請在 5 秒內完成驗證' : '驗證碼失效，請重新驗證'}}</h2>
         <button class="btn rounded bg-primary text-white"
                 @click="verify()">{{OTPcode !== '' ? '驗證' : '重新驗證'}}</button>
       </div>
@@ -94,7 +94,7 @@ export default {
     },
     registed() {
       const created = new Date().getTime();
-      this.$emit('emit-reg', this.email, this.name, this.password, created, this.OTPcode, members.length + 1);
+      this.$emit('emit-reg', this.email, this.name, this.password, created, this.OTPcode, this.address);
       this.OTP();
     },
     verify() {
@@ -116,7 +116,7 @@ export default {
       this.OTPlink = this.OTPcode;
       const OTPlive = setTimeout(() => {
         this.OTPcode = '';
-      }, 3000);
+      }, 5000);
       OTPlive();
     },
   },
@@ -136,4 +136,13 @@ export default {
       height: 100vh;
       width: 100%;
     }
+    .OTPlightbox{
+    z-index: 2;
+    background: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 300px;
+    height: 300px;
+  }
 </style>

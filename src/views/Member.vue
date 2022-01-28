@@ -47,11 +47,13 @@
                 <div class="row d-flex justify-content-center" v-for="item in reward" :key="item">
                   <div class="col-3 col-md-2 mb-3 text-center">{{item.id}}</div>
                   <div class="col-9 col-md-6 mb-3">{{item.prize}}</div>
+                  <div class="col-9 col-md-4 mb-3">{{item.address}}</div>
                   <hr>
                 </div>
                 <div class="row d-flex justify-content-center" v-for="item in cart" :key="item">
                   <div class="col-3 col-md-2 mb-3 text-center">{{item.id}}</div>
                   <div class="col-9 col-md-6 mb-3">{{item.prize}}</div>
+                  <div class="col-9 col-md-4 mb-3">{{item.address}}</div>
                   <hr>
                 </div>
               </div>
@@ -61,8 +63,8 @@
       </div>
     </div>
     <div v-if="lightbox === true"
-        class="gray-back position-fixed top-0 start-0">
-      <div class="bg-light lightbox position-absolute top-50 start-50 translate-middle
+        class="changelightbox-back position-fixed top-0 start-0">
+      <div class="bg-light changelightbox position-absolute top-50 start-50 translate-middle
                 d-flex flex-column justify-content-around align-items-center rounded">
         <img class="close position-absolute top-0 end-0" alt=""
              src="../assets/images/lightbox/close.png"
@@ -121,5 +123,18 @@ export default {
 </script>
 
 <style lang="scss">
-
+.changelightbox{
+  z-index: 2;
+  background: #fff;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 300px;
+  height: 300px;
+}
+.changelightbox-back{
+  background: #80808077;
+  height: 100vh;
+  width: 100%;
+}
 </style>

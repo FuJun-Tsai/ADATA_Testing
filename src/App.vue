@@ -81,6 +81,7 @@ export default {
   data() {
     return {
       lang: localStorage.getItem('lang') || 'tw',
+      cartID: 4000,
       user: {
         rowidt: '',
         name: '',
@@ -94,10 +95,10 @@ export default {
       },
       cart: [
         {
-          name: 'Catarina Nina Moraes',
-          id: '5000',
-          prize: 'Nitendo Switch Lite + XPG microSDXC',
-          address: '桃園市桃園區成功路三段15號10樓',
+          name: '',
+          id: '',
+          prize: '',
+          address: '',
         },
       ],
     };
@@ -108,15 +109,13 @@ export default {
     };
   },
   methods: {
-    test() {
-      console.log(this.$router);
-    },
-    setMember(email, name, password, created, rowidt) {
+    setMember(email, name, password, created, rowidt, address) {
       this.user.email = email;
       this.user.name = name;
       this.user.password = password;
       this.user.created = created;
       this.user.rowidt = rowidt;
+      this.user.address = address;
     },
     setVerify() {
       this.user.isRegister = true;
@@ -130,14 +129,15 @@ export default {
       this.user.updated = '';
     },
     setCart(prize, address) {
-      const xxx = {
-        id: 8888,
+      this.cartID += 1;
+      const newCart = {
+        id: this.cartID,
         name: this.user.name,
         email: this.user.email,
         prize,
         address,
       };
-      this.cart.push(xxx);
+      this.cart.push(newCart);
     },
     updateMember(target, value, updateTime) {
       this.user.updated = updateTime;

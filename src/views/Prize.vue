@@ -109,7 +109,6 @@ export default {
     closeLightbox() {
       this.step = 0;
       this.lightbox = false;
-      this.msg = '';
     },
     test() {
       this.$refs.lightbox.openLightbox();
